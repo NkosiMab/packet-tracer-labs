@@ -1,0 +1,38 @@
+!--------------------------
+! Level 1 Router Configuration
+!--------------------------
+
+enable
+configure terminal
+hostname R1
+
+! -------------------------
+! Physical interface
+! -------------------------
+interface GigabitEthernet0/0
+ no shutdown
+ no ip address
+
+! -------------------------
+! Subinterfaces for VLANs (Router-on-a-stick)
+! -------------------------
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+
+! -------------------------
+! Save configuration
+! -------------------------
+end
+write memory
